@@ -1,0 +1,13 @@
+body {
+  background-color: #73CBE1;
+  font-family: 'Abel', sans-serif;
+}
+
+h1{
+  font-family: 'Pacifico', cursive;
+}
+
+.logo{
+  height: 30vh;
+  padding: 2rem;
+}
