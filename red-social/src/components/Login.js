@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import fire from './config/fire'
-import logo from './logodeafriend2.png'
+import firebaseConf from '../config/firebaseConf';
+import logo from './logodeafriend2.png';
 import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class Login extends Component {
@@ -19,7 +19,7 @@ class Login extends Component {
 
     login(e) {
         e.preventDefault();
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((fun) => {
+        firebaseConf.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(function () {
         }).catch((error) => {
             console.log('Error al ingresar');
         });
@@ -27,23 +27,23 @@ class Login extends Component {
 
     signup(e){
         e.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((fun) =>{
+        firebaseConf.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function () {
         }).catch((error)=>{
             console.log('Error al registrarse')
         })
     }
 
-    google(e){
+    logginGoogle(){
         const provider = new firebase.auth.GoogleAuthProvider();
-        fire.auth().signInWithPopup(provider).then((fun) => {
+        firebaseConf.auth().signInWithPopup(provider).then(function () {
         }).catch((error) => {
         console.log('Error en google')
     });
     }
 
-    facebook(e){
+    loginFacebook(){
         const provider = new firebase.auth.FacebookAuthProvider();
-        fire.auth().signInWithPopup(provider).then((fun) => {
+        firebaseConf.auth().signInWithPopup(provider).then(function () {
         }).catch((error) => {
         console.log('Error en facebook')
     });
@@ -77,8 +77,8 @@ class Login extends Component {
                 </Row>
                 <Row className="row justify-content-md-center mt-3">
                     <Col sm={1} md={3} >
-                    <Button color="danger" onClick={this.google}>G</Button>{' '}
-                    <Button color="primary" onClick={this.facebook} >F</Button>{' '}
+                    <Button color="danger" onClick={this.loginGoogle}>G</Button>{' '}
+                    <Button color="primary" onClick={this.loginFacebook} >F</Button>{' '}
                     </Col>
                 </Row>
             </section>   

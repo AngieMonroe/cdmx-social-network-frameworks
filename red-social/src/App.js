@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import fire from './config/fire';
-import Login from './Login';
-import Home from './Home';
+import firebaseConf from './config/firebaseConf';
+import Login from './components/Login';
+import Home from './components/Home';
 
 /*
 class List extends Component {
   constructor (props){
-    super (props);
+    super (props); 
   }
   render() {
     const {usuarios} = this.props;   //Puedo guardar en una variable permite claridad en código
@@ -24,7 +24,8 @@ class List extends Component {
 //Primer componente (PADRE)
 class App extends Component {
   constructor(props){  // Recibe unas propiedades en javascript serian parametros
-    super(props); // Estas props se pasan a super
+    super(props); // Estas props se pasan a super Hereda la funcionalidad
+    // state Es el estado de los datos es un objeto. Esto se administra en memoria por lo que entre más sencillo mejor
     this.state = {
       mostrarList : true
     }
@@ -69,7 +70,7 @@ class App extends Component {
   }
 
   authListener(){
-    fire.auth().onAuthStateChanged((user) => {
+    firebaseConf.auth().onAuthStateChanged((user) => {
       console.log(user);
       if (user) {
         this.setState({ user });
@@ -81,7 +82,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-    {this.state.user ? (<Home />) : (<Login />)}
+    {this.state.user ? (<Home user = {this.state.user}/>) : (<Login />)}
+
       </div>
     )
   }
