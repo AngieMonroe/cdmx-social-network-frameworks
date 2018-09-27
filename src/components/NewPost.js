@@ -8,7 +8,8 @@ class NewPost extends Component {
         this.savePost = this.savePost.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-            textPost: ''
+            textPost: '',
+            imagenPost: ''
         }
     }
 
@@ -20,13 +21,20 @@ class NewPost extends Component {
 
     }
 
+    imagenPost(){
+        
+    }
+
     savePost () {
+        if (this.state.textPost.length === 0 || /^\s+$/.test()) {
+            alert('No has escrito nada');
+          } else {
         firebase.database().ref('postReact').push();
         const postNew = firebase.database().ref('postReact').push();
         const keyPost = postNew.getKey();
         firebase.database().ref(`postReact/${keyPost}`).set({
             name: this.props.user.displayName,
-            photo: this.props.user.displayName,
+            photo: this.props.user.photoURL,
 //            date: this.state.datePost,
             textPost: this.state.textPost,
             keyPost: keyPost,
@@ -35,6 +43,7 @@ class NewPost extends Component {
         // alert('Se guardo el mensaje');
         this.setState({textPost: ''})    
         }
+    }
 
     render (){
         const userName = this.props.user.displayName;

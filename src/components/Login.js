@@ -33,9 +33,9 @@ class Login extends Component {
         })
     }
 
-    logginGoogle(){
+    loginGoogle(){
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebaseConf.auth().signInWithPopup(provider).then(function () {
+        firebaseConf.auth().signInWithRedirect(provider).then(function () {
         }).catch((error) => {
         console.log('Error en google')
     });
@@ -43,7 +43,7 @@ class Login extends Component {
 
     loginFacebook(){
         const provider = new firebase.auth.FacebookAuthProvider();
-        firebaseConf.auth().signInWithPopup(provider).then(function () {
+        firebaseConf.auth().signInWithRedirect(provider).then(function () {
         }).catch((error) => {
         console.log('Error en facebook')
     });

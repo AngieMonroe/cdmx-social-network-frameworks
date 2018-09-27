@@ -11,7 +11,7 @@ import {
     NavLink,
     Button } from 'reactstrap';
 import './Navbar.css';
-
+import PropTypes from 'prop-types';
   
 class NavbarApp extends Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class NavbarApp extends Component {
         <div>
           <Navbar color="secondary" light expand="md">
             <NavbarBrand href="/"> <a className="navbar-brand d-inline-block align-top">
-            <img src={logo} width="100" height="50" alt="logo deafriend"></img></a>
+            <img src={logo} width="130" height="50" alt="logo deafriend"></img></a>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
@@ -68,6 +68,10 @@ class NavbarApp extends Component {
         </div>
       );
     }
+  }
+
+  Navbar.PropTypes = {
+    user: PropTypes.shape.isRequired
   }
 
   export default NavbarApp;

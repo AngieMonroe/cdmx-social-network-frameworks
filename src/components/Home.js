@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import NavbarApp from './Navbar';
 import NewPost from './NewPost';
 import PostList from './PostList';
+import PropTypes from 'prop-types';
+
 
 class Home extends Component {
 
@@ -15,5 +17,9 @@ class Home extends Component {
         );
     }
 }
+
+Home.PropTypes = {
+    user: PropTypes.shape.isRequired
+  }
 
 export default Home;
