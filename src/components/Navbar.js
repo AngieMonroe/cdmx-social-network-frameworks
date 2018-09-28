@@ -42,7 +42,7 @@ class NavbarApp extends Component {
     render() {
       const userName = this.props.user.displayName;
       return (
-        <div>
+        <fragment>
           <Navbar color="secondary" light expand="md">
             <NavbarBrand href="/"> <a className="navbar-brand d-inline-block align-top">
             <img src={logo} width="130" height="50" alt="logo deafriend"></img></a>
@@ -65,7 +65,7 @@ class NavbarApp extends Component {
               </Nav>
             </Collapse>
           </Navbar>
-        </div>
+        </fragment>
       );
     }
   }

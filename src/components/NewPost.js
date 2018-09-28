@@ -48,7 +48,7 @@ class NewPost extends Component {
     render (){
         const userName = this.props.user.displayName;
         return (
-            <div className="container">
+            <fragment className="container">
                 <Card className="mt-5 col-sm-1 col-md-7">
                 <CardHeader><strong>{userName}</strong> Escribe tu comentario:</CardHeader>
                 <CardBody>
@@ -56,7 +56,7 @@ class NewPost extends Component {
                     <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>
-            </div>     
+            </fragment>     
         )
     }
 }

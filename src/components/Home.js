@@ -9,11 +9,11 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <fragment>
             <NavbarApp user={this.props.user}/>
             <NewPost user={this.props.user}/>
             <PostList />
-            </div>
+            </fragment>
         );
     }
 }
