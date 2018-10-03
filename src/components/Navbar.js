@@ -42,7 +42,7 @@ class NavbarApp extends Component {
     render() {
       const userName = this.props.user.displayName;
       return (
-        <fragment>
+        <div>
           <Navbar color="secondary" light expand="md">
             <NavbarBrand href="/"> <a className="navbar-brand d-inline-block align-top">
             <img src={logo} width="130" height="50" alt="logo deafriend"></img></a>
@@ -54,10 +54,10 @@ class NavbarApp extends Component {
                   <NavLink className="text-white">Bienvenidx {userName}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="text-white" href="./components/Home">Muro</NavLink>
+                  <NavLink className="text-white" href="/">Muro</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="text-white" href="/components">Perfil    </NavLink>
+                  <NavLink className="text-white" href="/">Perfil    </NavLink>
                 </NavItem>
                 <NavItem >
                   <Button  color="info" size="md" onClick={this.logout} >Logout</Button>
@@ -65,7 +65,7 @@ class NavbarApp extends Component {
               </Nav>
             </Collapse>
           </Navbar>
-        </fragment>
+        </div>
       );
     }
   }

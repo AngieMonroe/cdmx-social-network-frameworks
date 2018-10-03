@@ -13,37 +13,47 @@ class Login extends Component {
         this.signup = this.signup.bind(this);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            name: ''
         }
     }
 
     login(e) {
         e.preventDefault();
-        firebaseConf.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(function () {
-        }).catch((error) => {
+        firebaseConf.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+        })
+        .catch((error) => {
             console.log('Error al ingresar');
         });
     }
 
     signup(e){
         e.preventDefault();
-        firebaseConf.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(function () {
-        }).catch((error)=>{
+        firebaseConf.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            firebase.auth().currentUser.updateProfile({
+                displayName: this.state.name
+            })
+        })
+        .catch(() => {
             console.log('Error al registrarse')
         })
     }
 
     loginGoogle(){
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebaseConf.auth().signInWithRedirect(provider).then(function () {
-        }).catch((error) => {
+        firebaseConf.auth().signInWithRedirect(provider)
+        .then(() => {
+        })
+        .catch((error) => {
         console.log('Error en google')
     });
     }
 
     loginFacebook(){
         const provider = new firebase.auth.FacebookAuthProvider();
-        firebaseConf.auth().signInWithRedirect(provider).then(function () {
+        firebaseConf.auth().signInWithRedirect(provider).then(() => {
         }).catch((error) => {
         console.log('Error en facebook')
     });
@@ -61,6 +71,10 @@ class Login extends Component {
                     <img src={logo} className="logo" alt="logo deafriend" />
               <div>
               <Form>
+              <FormGroup>
+                   <Label for="exampleEmail">Nombre</Label>
+                    <Input placeholder="Escribe tu nombre" value={this.state.name} onChange={this.handleChange} type="text" name="name" />
+                </FormGroup>
                 <FormGroup>
                    <Label for="exampleEmail">Email</Label>
                     <Input placeholder="Escribe tu email" value={this.state.email} onChange={this.handleChange} type="email" name="email" />
@@ -69,8 +83,8 @@ class Login extends Component {
                     <Label for="examplePassword">Password</Label>
                     <Input placeholder="Escribe tu contraseña" value={this.state.password} onChange={this.handleChange} type="password" name="password" />
                 </FormGroup>
-                <Button className="col align-self-start mb-2 btn btn-info" size="md" onClick={this.login} >Login</Button>
-                <Button className="col align-self-end btn btn-light"  size="md" onClick={this.signup} >Signup</Button>
+                <Button className="col align-self-start mb-2 btn btn-info" size="md" onClick={this.login} >Entrar</Button>
+                <Button className="col align-self-end btn btn-light"  size="md" onClick={this.signup} >Registrarte</Button>
                 </Form>
               </div>
                 </Col>

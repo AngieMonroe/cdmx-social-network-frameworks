@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, CardHeader, CardBody } from 'reactstrap';
 import firebase from 'firebase';
+import imageUser from '../images/usuario.jpg';
 
 class NewPost extends Component {
     constructor(props){
@@ -29,26 +30,32 @@ class NewPost extends Component {
         if (this.state.textPost.length === 0 || /^\s+$/.test()) {
             alert('No has escrito nada');
           } else {
-        firebase.database().ref('postReact').push();
-        const postNew = firebase.database().ref('postReact').push();
-        const keyPost = postNew.getKey();
-        firebase.database().ref(`postReact/${keyPost}`).set({
-            name: this.props.user.displayName,
-            photo: this.props.user.photoURL,
-//            date: this.state.datePost,
-            textPost: this.state.textPost,
-            keyPost: keyPost,
-            likes: 0
-            });
-        // alert('Se guardo el mensaje');
-        this.setState({textPost: ''})    
-        }
+              let photoUser;
+              if(this.props.user.photoURL === null){
+                  photoUser = imageUser;
+              }else{
+                  photoUser = this.props.user.photoURL;
+              }
+            firebase.database().ref('postReact').push();
+            const postNew = firebase.database().ref('postReact').push();
+            const keyPost = postNew.getKey();
+            firebase.database().ref(`postReact/${keyPost}`).set({
+                name: this.props.user.displayName,
+                photo: photoUser,
+    //            date: this.state.datePost,
+                textPost: this.state.textPost,
+                keyPost: keyPost,
+                likes: 0
+                });
+            // alert('Se guardo el mensaje');
+            this.setState({textPost: ''})    
+            }
     }
 
     render (){
         const userName = this.props.user.displayName;
         return (
-            <fragment className="container">
+            <section className="container">
                 <Card className="mt-5 col-sm-1 col-md-7">
                 <CardHeader><strong>{userName}</strong> Escribe tu comentario:</CardHeader>
                 <CardBody>
@@ -56,7 +63,7 @@ class NewPost extends Component {
                     <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>
-            </fragment>     
+            </section>     
         )
     }
 }

@@ -3,7 +3,7 @@ import './App.css';
 import firebaseConf from './config/firebaseConf';
 import Login from './components/Login';
 import Home from './components/Home';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class App extends Component {
   constructor (props) {
@@ -37,8 +37,8 @@ class App extends Component {
   }
 }
 
-App.PropTypes = {
-  user: PropTypes.shape
-}
+// App.PropTypes = {
+//   user: PropTypes.shape
+// }
 
 export default App;

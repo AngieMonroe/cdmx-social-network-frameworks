@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import NavbarApp from './Navbar';
 import NewPost from './NewPost';
 import PostList from './PostList';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
 class Home extends Component {
 
     render() {
         return (
-            <fragment>
+            <div>
             <NavbarApp user={this.props.user}/>
             <NewPost user={this.props.user}/>
             <PostList />
-            </fragment>
+            </div>
         );
     }
 }
 
-Home.PropTypes = {
-    user: PropTypes.shape.isRequired
-  }
+// Home.PropTypes = {
+//     user: PropTypes.shape.isRequired
+//   }
 
 export default Home;
