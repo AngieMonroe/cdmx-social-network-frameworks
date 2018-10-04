@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardBody} from 'reactstrap';
 import firebaseConf from '../config/firebaseConf';
-import Likes from './Likes';
+import Likes from './Likes'
 
 class PostList extends Component {
      constructor(props){
@@ -10,7 +10,7 @@ class PostList extends Component {
          this.handleChange = this.handleChange.bind(this);
          this.deletePost = this.deletePost.bind(this);
          this.editPost = this.editPost.bind(this);  
-         this.likePost = this.likePost.bind(this);
+        //  this.like = this.like.bind(this);
          this.state = {
             posts : [],
             postEdit : '',
@@ -28,7 +28,7 @@ class PostList extends Component {
                 const dataPost = element.val()
                 posts.push(dataPost);
             })
-            this.setState({ posts: posts});
+            this.setState({ posts });
          })
      }
 
@@ -44,16 +44,29 @@ class PostList extends Component {
             textPost : this.state.postEdit
          })
      }
-    
-     likePost(keyPost){
-         console.log(keyPost);
-         this.database.child(keyPost).update({
-             likes: 0
-         })
-     }
+
+    //  like(keyPost) {
+    //      console.log('like')
+    //      this.database.child(keyPost).update({
+    //          likes:   + 1
+    //      })
+    // };
+
+    // dislike(keyPost){
+    //     console.log('dislike')
+    //     this.database.child(keyPost).update({
+
+    //     })
+    //     this.setState(function(prevState){
+    //         if(prevState.like >= 1){
+    //             {like: prevState.like - 1}
+    //         }
+    //     })
+    // };
 
 
     render() {
+
         return (
             <section className="container">
             {this.state.posts.map(post => 
@@ -66,7 +79,10 @@ class PostList extends Component {
                         <li className="list-inline-item pr-2 ml-auto"><a href="#" className="white-text" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Delete</a></li>
                         <li className="list-inline-item pr-2"><a href="#" className="white-text" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Edit</a></li>
                         <Likes />
-
+                        {/* <li className="list-inline-item"><a href="#" className="white-text" onClick={() => this.like(post.keyPost)} name="like">
+                        <i className="far fa-thumbs-up"></i>  Like </a> {post.likes}</li>
+                        <li className="list-inline-item"><a href="#" className="white-text" onClick={() => this.dislike(post.keyPost)} name="dislike">
+                        <i className="far fa-thumbs-down icon"></i>  Dislike</a></li> */}
                         <div className="modal fade" id={post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">

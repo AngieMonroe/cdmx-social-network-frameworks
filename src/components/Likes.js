@@ -12,19 +12,7 @@ class Likes extends Component{
         }
     }
 
-    // componentDidMount(){
-    //     this.database.orderByChild('keyPost').on('value', snapshot => {             
-    //        const likes = [];
-    //        snapshot.forEach(element => {
-    //            const like = element.val()
-    //            like.push(likes);
-    //        })
-    //        this.setState({ like: likes});
-    //     })
-    // }
-
     like () {
-        console.log('like')
         this.setState(function(prevState){
             return {
                 like: prevState.like + 1
@@ -33,12 +21,9 @@ class Likes extends Component{
     };
 
     dislike(){
-        console.log('dislike')
         this.setState(function(prevState){
             if(prevState.like >= 1){
-                return {
-                    like: prevState.like - 1
-                }
+                return {like: prevState.like - 1}
             }
         })
     };
@@ -46,9 +31,14 @@ class Likes extends Component{
     render(){
         return (
             <div className="list-inline-item">
-                <li className="list-inline-item"><a href="#" className="white-text" onClick={() => this.like()} name="like"><i className="far fa-thumbs-up"></i>  Like </a> {this.state.like}</li>
-                <li className="list-inline-item"><a href="#" className="white-text" onClick={() => this.dislike()} name="dislike"><i className="far fa-thumbs-down icon"></i>  Dislike</a></li>
+                <li className="list-inline-item">
+                    <a href="#" className="white-text" onClick={() => this.like()} name="like">
+                        <i className="far fa-thumbs-up"></i>  Like </a> {this.state.like}</li>
+                <li className="list-inline-item">
+                    <a href="#" className="white-text" onClick={() => this.dislike()} name="dislike">
+                        <i className="far fa-thumbs-down icon"></i>  Dislike</a></li>
             </div>
+        
         )
     }
 }

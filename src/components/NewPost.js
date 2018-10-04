@@ -15,15 +15,15 @@ class NewPost extends Component {
     }
 
     handleChange(e){
-        this.setState({ textPost: e.target.value});
+        this.setState({ textPost: e.target.value, imagenPost: e.target.files[0]});
+        console.log(e.target.files[0])
     }
 
     datePost () {
-
     }
 
-    imagenPost(){
-        
+    imagen(){
+     console.log(this.state)   
     }
 
     savePost () {
@@ -60,6 +60,7 @@ class NewPost extends Component {
                 <CardHeader><strong>{userName}</strong> Escribe tu comentario:</CardHeader>
                 <CardBody>
                     <textarea name="textPost" className="col-12" value={this.state.textPost} onChange={this.handleChange}></textarea>
+                    <input type="file" value={this.state.image} onChange={this.handleChange}/>
                     <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>
