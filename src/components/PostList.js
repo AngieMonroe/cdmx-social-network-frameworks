@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardBody} from 'reactstrap';
 import firebaseConf from '../config/firebaseConf';
-import Likes from './Likes'
+import Likes from './Likes';
 
 class PostList extends Component {
      constructor(props){
@@ -33,7 +33,6 @@ class PostList extends Component {
      }
 
      deletePost(keyPost) {
-        console.log(keyPost)
         if(window.confirm('¿Quieres eliminar el post?')){
             this.database.child(keyPost).remove();
         }
@@ -45,44 +44,20 @@ class PostList extends Component {
          })
      }
 
-    //  like(keyPost) {
-    //      console.log('like')
-    //      this.database.child(keyPost).update({
-    //          likes:   + 1
-    //      })
-    // };
-
-    // dislike(keyPost){
-    //     console.log('dislike')
-    //     this.database.child(keyPost).update({
-
-    //     })
-    //     this.setState(function(prevState){
-    //         if(prevState.like >= 1){
-    //             {like: prevState.like - 1}
-    //         }
-    //     })
-    // };
-
-
     render() {
 
         return (
-            <section className="container">
+            <section className="container-fluid">
             {this.state.posts.map(post => 
-                <Card className="mt-3 col-sm-1 col-md-9" key={post.keyPost}>
+                <Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
                     <CardHeader>
                     <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
                     </CardHeader>
                     <CardBody>
                         <p name="textPost" className="col-12">{post.textPost} </p>
-                        <li className="list-inline-item pr-2 ml-auto"><a href="#" className="white-text" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Delete</a></li>
-                        <li className="list-inline-item pr-2"><a href="#" className="white-text" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Edit</a></li>
+                        <li className="list-inline-item"><a href="#" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
+                        <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
                         <Likes />
-                        {/* <li className="list-inline-item"><a href="#" className="white-text" onClick={() => this.like(post.keyPost)} name="like">
-                        <i className="far fa-thumbs-up"></i>  Like </a> {post.likes}</li>
-                        <li className="list-inline-item"><a href="#" className="white-text" onClick={() => this.dislike(post.keyPost)} name="dislike">
-                        <i className="far fa-thumbs-down icon"></i>  Dislike</a></li> */}
                         <div className="modal fade" id={post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
@@ -103,7 +78,7 @@ class PostList extends Component {
                         </div>
               </CardBody>
                 </Card>
-                )}
+                ).reverse()}
             </section>
         )
     }

@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import firebaseConf from '../config/firebaseConf';
 import logo from './logodeafriend2.png';
 import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import './Login.css';
 
 class Login extends Component {
     constructor (props){
@@ -91,8 +92,10 @@ class Login extends Component {
                 </Row>
                 <Row className="row justify-content-md-center mt-3">
                     <Col sm={1} md={3} >
-                    <Button color="danger" onClick={this.loginGoogle}>G</Button>{' '}
-                    <Button color="primary" onClick={this.loginFacebook} >F</Button>{' '}
+                    <Button className="btn-google btn-social btn-block" onClick={this.loginGoogle}> 
+                    <i class="fab fa-google"></i> Ingresa con Google</Button>{' '}
+                    <Button className="btn-facebook btn-social btn-block" onClick={this.loginFacebook}>
+                    <i class="fab fa-facebook"></i> Ingresa con Facebook</Button>{' '}
                     </Col>
                 </Row>
             </section>   

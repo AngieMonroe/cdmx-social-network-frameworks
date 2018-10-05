@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavbarApp from './Navbar';
 import NewPost from './NewPost';
 import PostList from './PostList';
+import './Home.css'
 // import PropTypes from 'prop-types';
 // Wes Bos videos youtube para aprender más.... Shirley Wu  funfun Function 
 // <Router path = "home/:id" />
@@ -13,7 +14,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="firstImage">
             <NavbarApp user={this.props.user}/>
             <NewPost user={this.props.user}/>
             <PostList />

@@ -1,0 +1,7 @@
+.firstImage{
+    background-image: url('../images/señas.png');
+    background-size: 55vh;
+    background-attachment: fixed;
+    background-position: 99% 30%;
+    background-repeat: no-repeat;
+}

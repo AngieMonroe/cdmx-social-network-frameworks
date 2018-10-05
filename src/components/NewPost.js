@@ -8,23 +8,22 @@ class NewPost extends Component {
         super(props);
         this.savePost = this.savePost.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        // this.handleChangeImage = this.handleChangeImage(this);
         this.state = {
             textPost: '',
-            imagenPost: ''
+            imagePost: ''
         }
     }
 
     handleChange(e){
-        this.setState({ textPost: e.target.value, imagenPost: e.target.files[0]});
-        console.log(e.target.files[0])
+        this.setState({ textPost: e.target.value});
     }
 
-    datePost () {
-    }
+    // handleChangeImage(e){
+    //     this.setState({ imagePost: e.target.files[0]});
+    //     console.log(e.target.files[0])
+    // }
 
-    imagen(){
-     console.log(this.state)   
-    }
 
     savePost () {
         if (this.state.textPost.length === 0 || /^\s+$/.test()) {
@@ -42,7 +41,6 @@ class NewPost extends Component {
             firebase.database().ref(`postReact/${keyPost}`).set({
                 name: this.props.user.displayName,
                 photo: photoUser,
-    //            date: this.state.datePost,
                 textPost: this.state.textPost,
                 keyPost: keyPost,
                 likes: 0
@@ -55,12 +53,12 @@ class NewPost extends Component {
     render (){
         const userName = this.props.user.displayName;
         return (
-            <section className="container">
-                <Card className="mt-5 col-sm-1 col-md-7">
+            <section className="container-fluid">
+                <Card className="mt-5 col-sm-12 col-md-7">
                 <CardHeader><strong>{userName}</strong> Escribe tu comentario:</CardHeader>
                 <CardBody>
                     <textarea name="textPost" className="col-12" value={this.state.textPost} onChange={this.handleChange}></textarea>
-                    <input type="file" value={this.state.image} onChange={this.handleChange}/>
+                    {/* <input type="file" value={this.state.imagePost} onChange={this.handleChangeImage}/> */}
                     <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>

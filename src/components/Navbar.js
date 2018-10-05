@@ -12,6 +12,7 @@ import {
     Button } from 'reactstrap';
 import './Navbar.css';
 import PropTypes from 'prop-types';
+import './ProfileUser';
   
 class NavbarApp extends Component {
     constructor(props) {
@@ -54,13 +55,13 @@ class NavbarApp extends Component {
                   <NavLink className="text-white">Bienvenidx {userName}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="text-white" href="/">Muro</NavLink>
+                  <NavLink className="text-white" href="./Home">Muro</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink className="text-white" href="/">Perfil    </NavLink>
+                  <NavLink className="text-white" href="./ProfileUser">Perfil    </NavLink>
                 </NavItem>
                 <NavItem >
-                  <Button  color="info" size="md" onClick={this.logout} >Logout</Button>
+                  <Button  color="info" size="md" onClick={this.logout} >Cerrar Sesión</Button>
                 </NavItem>
               </Nav>
             </Collapse>

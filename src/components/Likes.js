@@ -32,11 +32,14 @@ class Likes extends Component{
         return (
             <div className="list-inline-item">
                 <li className="list-inline-item">
-                    <a href="#" className="white-text" onClick={() => this.like()} name="like">
-                        <i className="far fa-thumbs-up"></i>  Like </a> {this.state.like}</li>
+                    <a href="#" className="white-text ml-2 mr-2" onClick={() => this.like()} name="like">
+                        <i className="far fa-thumbs-up"></i>   </a> </li>
                 <li className="list-inline-item">
-                    <a href="#" className="white-text" onClick={() => this.dislike()} name="dislike">
-                        <i className="far fa-thumbs-down icon"></i>  Dislike</a></li>
+                    <a href="#" className="white-text ml-2 mr-2" onClick={() => this.dislike()} name="dislike">
+                        <i className="far fa-thumbs-down icon"></i>  </a></li>
+                <li className="list-inline-item">
+                    <p className="mr-auto text-warning"> {this.state.like}</p>
+                </li>
             </div>
         
         )
