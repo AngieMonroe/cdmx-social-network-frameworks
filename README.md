@@ -1,220 +1,177 @@
-# Rehaciendo tu red social usando librerías y frameworks
+# Rehaciendo  red social usando React
 
-## Preámbulo
+# Deafriend for Education
 
-[React](https://reactjs.org/), [Angular](https://angular.io/) y [Vue](https://vuejs.org/)
-son algunos de los _frameworks_ y _librerías_ de JavaScript más utilizados por
-lxs desarrolladorxs alrededor del mundo, y hay una razón para eso.
-En el contexto del navegador, [_mantener la interfaz sincronizada con el estado
-es difícil_](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445).
-Al elegir un _framework_ o _librería_ para nuestra interfaz, nos apoyamos en una
-serie de convenciones e implementaciones _probadas_ y _documentadas_ para
-resolver un problema común a toda interfaz web. Esto nos permite concentrarnos
-mejor (dedicar más tiempo) en las caractrísticas _específicas_ de
-nuestra aplicación.
+##Red Social - Proceso UX
+Las redes sociales son sitios donde un grupo de personas con intereses comunes se comunican e interactuan en torno a un tema.
+Una emprendedora nos ha encargado crear una red social.  Nos da ciertos temas en los que le gustaría invertir:
 
-Cuando elegimos una de estas tecnologías no solo importamos un pedacito de
-código para reusarlo (lo cuál es un gran valor per se), si no que adoptamos una
-**arquitectura**, una serie de **principios de diseño**, un **paradigma**, unas
-**abstracciones**, un **vocabulario**, una **comunidad**, ...
+-   Alimentación
+-   Feminismo
+-   Educación
+-   Salud
+-   Energías Renovables
 
-Como desarrolladora Front-end, estos kits de desarrollo pueden resultarte
-de gran ayuda para implementar rápidamente características de los proyectos en
-los que trabajes.
+## Descubrimiento de la investigación
+De acuerdo a lo anterior, nos decidimos centrarnos en el tema de educación específicamente en las personas con una discapacidad de tipo auditiva, para tener más información al respecto. Se realizaron dos tipos de investigaciones una documental y otra de campo.
+En la primera de acuerdo a la documentación podemos definir los siguiente:
 
-![caracoles](http://www.animated-photography.com/images/portfolio/full/Evolution.jpg)
+**Insights de la investigación**
 
-## Introducción
+*   Primer obstáculo es la comunicación.
+    
+*   Sordos tienen su propio idioma, su primer lengua es la de signos y la segunda el español.
+    
+*   Cuando no entienden algo pregunta a varias personas, ya que todos los días aprenden palabras nuevas.
+    
+*   Mejoran su lenguaje a través de sus propios recursos.
+    
+*   La sordera da lugar a una forma diferente de percibir y vivir el mundo que ha tenido como consecuencia el desarrollo de las lenguas de signos y la formación de comunidades de personas sordas con una historia y una cultura propias.
+    
+*   El español hablado como escrito y la lengua de señas tienen una gramática completamente distinta, lo que obliga a los sordos a razonar en dos formas diferentes.
+    
+*   Las redes sociales han modificado su vida debido a que sienten que escribir es útil.
 
-En este proyecto tendrás la oportunidad de _re-escribir_ tu anterior proyecto de
-la _Red Social_, pero esta vez usando un _framework_ o una _librería_.
+En un segundo acercamiento al tema se decidió realizar un focus group con 5 estudiantes Sordos de Educación Media Superior, arrojando, en donde se hicieron diversas preguntas como: Qué red social utilizas con mayor frecuencia y porqué?; Qué problemas tienes al usarla?; Qué problemas tienes al interactuar con otras personas ya sean oyentes o sordos?; Cómo te comunicas con tus amigos?; Conoces algún sordo que haya estudiado la universidad?; Si existiera una red social solo para sordos que te gustaría que tuviera o para qué la usarías?
 
-Creemos que la mejor manera de enfrentarte a estas herramientas es
-eliminando de la ecuación el hecho de que tengas que entender un proyecto desde
-cero, su alcance, sus particularidades, el flujo, las validaciones, etc.
-Concéntrate en aprender y utilizar estas nuevas tecnologías.
+![Ana](src/images/Ana.png)
+![Ian](src/images/Ian.png)
+![Hector](src/images/Hector.png)
+![Israel](src/images/Israel.png)
+![Jose Armando](src/images/JoseArmando.png)
 
-El alcance del proyecto y el detalle de sus características es exactamente
-[el mismo que el original](https://github.com/Laboratoria/curricula-js/tree/v2.x/projects/03-social-network),
-incluyendo la parte de Hacker Edition pero excluyendo la parte de UX.
 
-## Objetivos
+|Nombre / Datos generales  | Preguntas / Respuestas  |
+|--|--|
+| **Israel, 23 años** Estudiante de Educación Media Superior Iztapalapa Utiliza su smartphone| **Cómo te comunicas con tus amigos o familia?** Por medio de mensajes, whatsapp o Lenguaje de señas. **Cómo te comunicas con tus amigos oyentes?** Escribimos mensajes pero es difícil porque el español es complicado para nosotros a veces no entendemos lo que dicen y nos confundimos. **Cuál es la red social que más utilizas?** Whatsapp **Por qué utilizas esta red social?** Es fácil **Qué problemas tienes en la educación por ser una persona sorda?** Materiales difíciles muchas palabras en español que no conozco. **Conoces algún sordo que haya cursado la universidad?** No **Quieres continuar con tus estudios a nivel superior?** Si, quiero estudiar fotografía, aunque aún no se donde. **Te gustaría tener ayuda de otros sordos para seguir estudiando?** Me gustaría en un futuro aprender, quisiera que me ayudaran las personas, familia, maestros para aprender más para en un futuro ir a la universidad. |
+| **Jóse Armando 24 años** Estudiante de Educación Media Superior Tlahuac Utiliza su smartphone | **Cómo te comunicas con tus amigos o familia?** Por whatsapp, facebook, messenger, con mi familia por medio de mensajes en el telefóno. **Cuál es la red social que más utilizas?** Whatsapp **Quieres continuar con tus estudios a nivel superior?** Yo quiero trabajar de mesero.  |
+| **Ian 24 años** Estudiante de Educación Media Superior Ecatepec Utiliza su smartphone | **Cómo te comunicas con tus amigos o familia?** Whatsapp, facebook **Cuál es la red social que más utilizas?** Whatsapp **Qué problemas tienes al usarla?** Difícil español, es confuso lo que dicen. **Cómo resuelves este problema?** Imágenes, envío vídeo con señas o busco en el diccionario. **Conoces algún sordo que haya cursado la universidad?** No **Quieres continuar con tus estudios a nivel superior?** No se, depende de lo que diga mi mamá. |
+| **Hector 26 años** Estudiante de Educación Media Superior Ajusco Utiliza su smartphone |**Para qué utilizas una red social?** Facebook, instagram, twitter. Las personas las utilizan para mandar mensajes o subir vídeos, comunicándote desde lugares lejanos. Los oyentes escriben mensajes y nosotros subimos vídeos a amigos o familia. **Cuál es la red social que más utilizas?** Facebook, Tumblr **Conoces algún sordo que haya cursado la universidad?** No **Si pudieras crear una red social solo para sordos que te gustaría que tuviera?** Que sea fácil y gratis. **Quieres continuar con tus estudios a nivel superior?** Si quiero estudiar química en la UAM **Te gustaría tener ayuda de otros sordos para seguir estudiando?** Sería interesante conocer a otros para saber cómo estudiaron la universidad, sí es difícil o fácil.  |
+|**Ana 19 años** Estudiante de Educación Media Superior Iztapalapa Utiliza su smartphone  | **Cómo te comunicas con tus amigos oyentes?** Con mi familia ellos hablan así que yo leo los labios o si no me envían mensajes por whatsapp. Es difícil porque siempre ellos están hablando y pregunto que significa y a veces no saben cómo explicarme. **Cuál es la red social que más utilizas?** Whatsapp, Facebook Por qué utilizas esta red social? Es fácil y mi familia y amigos la tienen. **Conoces algún sordo que haya cursado la universidad?** No **Si pudieras crear una red social solo para sordos que te gustaría que tuviera?** Fácil, palabras fáciles, enviar imágenes(gif) y memes me gustan para compartir con otras personas. Conocer personas de otros países para aprender de ellos y después viajar. **Quieres continuar con tus estudios a nivel superior?** Si, pero no se donde estudiar. **Te gustaría tener ayuda de otros sordos para seguir estudiando?** Yo no conozco a otros sordos de universidad pero me gustaría platicar para saber más de ellos.|
 
-El objetivo principal de aprendizaje es familiarizarse con el desarrollo web
-usando el _framework_ o _librería_ elegido, y todo lo que ello conlleva:
-**documentación**, **arquitectura**, **principios de diseño**, **paradigma**,
-**abstracciones**, **vocabulario**, **herramientas**, **comunidad**, ...
+**Insights del focus group**
 
-Por otro lado, tener que _re-escribir_ un programa es una experiencia de
-aprendizaje muy valiosa en sí misma, llevándonos a re-evaluar e iterar sobre
-un producto o prototipo. Dada la velocidad a la que evoluciona la tecnología
-web, es muy común tener que enfrentarse a este tipo de escenario donde decidimos
-(o alguien decide por nosotros) que lo mejor para seguir evolucionando una
-aplicación es re-escribirla usando una nueva tecnología.
+*   La red social que más utilizan los sordos es el whatsapp.
+    
+*  La comunicación con las personas oyentes es por medio de la escritura.
+    
+*   Ninguno conoce a otra persona sorda que haya cursado la universidad.
+    
+*   Sin embargo la mayoría del grupo quiere continuar con sus estudios superiores, aunque desconocen en qué institución puedan ingresar.
+    
+*   Han tenido problemas con sus amigos oyentes porque no entienden los mensajes que se escriben generan desacuerdos entre ellos.
+    
+*   Les gustaría tener una red social para la comunidad sorda ya que permitiría el intercambio de experiencias y conocer a otras personas con la misma condición. Aprenden de otros.
 
-## Consideraciones generales
+## Bechmark
 
-Este proyecto se debe "resolver" en duplas.
+![Bechmark](src/images/Bechmark.png)
 
-Discutan y pónganse de acuerdo sobre cuál de los proyectos van a hacer desde cero.
-Si no se pueden poner de acuerdo en 10 minutos, [aquí hay algo que puede ayudar](https://justflipacoin.com/)
+## Design Sprint
 
-Investiguen un poco sobre estas tres herramientas propuestas (React, Angular y
-Vue) y elijan con cuál quieren trabajar.
+![Design Sprint](src/images/designSprint.jpg)
 
-Para comenzar tendrás que hacer un _fork_ y _clonar_ este repositorio.
+## Análisis Argumentativo
 
-## Parte obligatoria
+Las redes sociales son sitios de Internet formados por comunidades de individuos con intereses o actividades en común y que permiten el contacto entre estos, de manera que se puedan comunicar e intercambiar información.
 
-Ver [03-social-network](https://github.com/Laboratoria/curricula-js/tree/v2.x/projects/03-social-network#parte-obligatoria).
+En México existen 2.4 millones de sordos, de los cuales, 124 mil 554 son jóvenes entre los 15 a 29 años, de estos el 28% no tienen ningún tipo de educación(INEGI 2014). A pesar de que muchos tienen un certificado de educación básica, hay un alto porcentaje que tienen rezago educativo en el área de matemáticas y lectoescritura.
 
-## Hacker edition
+El rezago educativo al que se enfrentan es el resultado por su paso en escuelas para oyentes en donde suelen ser excluidos o se les aprueban de grado sin necesidad demostrar sus conocimientos. La falta de educación para personas que no escuchan es causa de pocas oportunidades laborales. Es así que el 67% de esta población joven, es decir 83 mil no tienen ingreso económico propio.
 
-Ver [03-social-network](https://github.com/Laboratoria/curricula-js/tree/v2.x/projects/03-social-network#hacker-edition).
+La principal obstáculo al que “se enfrentan al momento de comunicarse con personas oyentes es la comprensión de la información ocasionada por un lenguaje pobre, que conduce a la marginación de la persona sorda.” (Amondarain y Correa, 2001). El español hablado como escrito y la lengua de señas tienen una gramática completamente distinta, lo que obliga a los sordos a razonar en dos formas diferentes.
 
-## Entrega
+Los sordos, se caracterizan fundamentalmente porque no pueden comunicarse por medio del habla con quienes los rodean,no de modo fluido y natural. Ellos necesitan comunicarse y socializar tanto como cualquier ser humano.En la actualidad la tecnología es una herramienta útil para la comunidad sorda. Los celulares han modificado su vida gracias a los mensajes de texto o video llamadas, en algunos casos ha mejorado el nivel de lectoescritura.
 
-El proyecto será _entregado_ subiendo tu código a GitHub (`commit`/`push`) y la
-interfaz será desplegada usando GitHub pages u otro servicio de hosting que
-puedas haber encontrado en el camino.
+Se identificó que los jóvenes que terminan su educación media superior con esta condición si bien tienen la motivación de seguir adelante no cuentan con la orientación hacia que instituciones educativas dirigirse. De acuerdo a esta problemática es que surge la necesidad de crear una red social que permita la comunicación entre las distintas personas sordas que se encuentran en el país. Esta red permitirá el intercambio de experiencias educativas entre jóvenes sordos que ya han terminado su formación académica a nivel superior y aquellos que están próximos a terminar preparatoria.
 
-## Evaluación
+Lo que permitirá que personas bajo la misma condición se den consejos para seguir estudiando, se identificaran entre ellos y favorecerá su autoestima y la imagen que tienen de sí mismos para su futuro. Será una oportunidad para que se den cuenta de que la sordera en sí no les impedirá alcanzar sus sueños si se lo proponen como hicieron otras personas con esta condición.
 
-### Tech
 
-| Habilidad | Nivel esperado |
-|-----------|----------------|
-| **JavaScript** | |
-| Estilo | 3
-| Nomenclatura/semántica | 3
-| Funciones/modularidad | 2
-| Estructuras de datos | 2
-| Tests | 2
-| **HTML** | |
-| Validación | 3
-| Estilo | 3
-| Semántica | 3
-| SEO | n/a
-| **CSS** | |
-| DRY | 3
-| Responsive | 3
-| **SCM** | |
-| Git | 3
-| GitHub | 3
-| **CS** | |
-| Lógica | 2
-| Arquitectura | 2
-| Patrones/paradigmas | n/a
+## Target
 
-### Habilidades Blandas
+*   Jóvenes Sordos entre 19 a 35 años que cursan o cursaron la educación media superior y superior.
+    
+*   Con un nivel socioeconómico medio.
+    
+*   Son muy observadores y atentos al detalle.
+    
+*   Utilizan la tecnología para comunicarse con sus amigos y familiares.
+    
+*   Les gustan las redes sociales que son intuitivas y fáciles de comprender.
+    
+*   Les gusta poder comunicarse por medio de imágenes (gifs, memes) con otras personas.
+   
 
-Para este proyecto esperamos que ya hayas consolidado el nivel 4 en todas tus
-habilidades blandas pero te invitamos que las lleves al siguiente nivel
-alcanzando el nivel 5 en todasvellas. Particularmente, entrena tu habilidad de
-autoaprendizaje, planificación y organización, y dar y recibir feedback.
+## Argumentación del proyecto.
 
-Recuerda la importancia de organizar, dividir y planificar tu trabajo.
-Particularmente lo que se refiere a probar/experimentar lo nuevo de manera
-aislada y no necesariamente en el mismo código que ya tienes implementado.
-Muchas cosas pueden interferir en lo que estás intentando hacer y puede parecer
-que no está bien lo que intentas cuando no es así. Revisa las diapos 15 y 16 de
-la [guia general para organizar, dividir y planificar tu ttrabajo](https://docs.google.com/presentation/d/e/2PACX-1vQhx9D36NjpH-Daea-ITPUDUzNL8ZiNAprq_7b5PSUrfutk45tEtaOLz2lmd8f54_5jX1hypDM8f8SM/pub?start=false&loop=false&delayms=60000)
+1.  **Negocio**. La *UNESCO* señala en su declaración mundial de 1990 que *“Educación para todos”*. Bajo este principio y aunado al nuevo modelo educativo incluyente. Las universidades han desarrollado proyectos de inclusión. Tal es el caso de la Universidad Santa Catarina, en Nuevo León, donde si un alumno sordo necesita un traductor a Lengua de Señas Mexicana, éste llega al salón cuando va a tomar clase; Universidad Teletón, con su cultura incluyente; UNAM fomentando una cultura de integración para personas con discapacidad; Universidad de Coahuila; UDG.
 
-Te aconsejamos revisar la rúbrica:
+Sin embargo estas universidades no cuenta con suficiente publicidad para llegar al público adecuado y así responder a sus necesidades. Por lo cual tener una plataforma donde se concentren estudiantes cuyo perfil encaja para estudiar la universidad y tener ex alumnos de estas instituciones siendo los principales promotores. Permitirá ofrecer a estas instituciones un espacio para su publicidad dirigida específicamente a estudiantes que están por cursar su educación superior.
 
-| Habilidad | Nivel esperado |
-|-----------|----------------|
-| Planificación y organización | 4
-| Autoaprendizaje | 4
-| Solución de Problemas | 4
-| Dar y recibir feedback | 4
-| Adaptabilidad | 4
-| Trabajo en equipo (trabajo colaborativo y responsabilidad) | 4
-| Comunicación eficaz | 4
-| Presentaciones | 4
+Además de ofrecer un espacio para que otras instituciones ofrezcan cursos o talleres a un público que ha estado descuidado o bien publicitar servicios como intérprete.
+  
 
-***
+2.  **Usuario**. Si bien existen redes sociales dirigidas a personas sordas, se ha dejado de lado el tema de educación. Siendo así un target potencial para su atención.
 
-## Pistas / Tips / Lecturas complementarias
+## Historias de Usuario
 
-Antes de elegir un framework, te recomendamos leer los siguientes artículos:
+Los usuarios son estudiantes Sordos de preparatoria que esta próximo a culminar sus estudios, tienen la intención de seguir estudiando el nivel superior sin embargo no conocen a ninguna persona Sorda que haya cursado la universidad.
 
-* [The deepest reason why modern JavaScript frameworks exist](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445)
-* [Should I use frameworks or libraries such as Angular, React, or VueJS or not?](https://dev.to/ericpaulbasbas/should-i-use-frameworks-or-libraries-such-as-angular-react-or-vuejs-or-not-3dp)
+Ellos quieren estudiar una carrera pero no conoce ninguna escuela que los acepten por su condición. Han tratado de buscar información en internet sin embargo los textos con los que se enfrentan son muy difíciles por lo que prefieren preguntar entre sus amigos, aunque ninguno de ellos tiene conocimientos al respecto.
 
-Hemos preparado algunos videos introductorios:
+Les han platicado que existe una red social para personas Sordas donde platican sus experiencias educativas. Esto le sirve para que otros conozcan las distintas posibilidades que tienen para seguir estudiando. Ellos también puede motivar a otros a culminar la preparatoria.
 
-* [Introducción a Frameworks de JavaScript (Lupo)](https://laboratoria-1.wistia.com/medias/22j8ut23y5)
-* [Introducción a Angular (Fabián)](https://laboratoria-1.wistia.com/medias/2dxpgs2s59)
-* [Introducción a React (Elizabeth)](https://reactjs.org/)
-* [Introducción a Vue (Luis)](https://vuejs.org/)
+Ellos esperan que esta red social les permita comunicarse de manera fácil con otros y así conocer a otras personas que como ellos, día con día se enfrentan a un mundo de oyentes.
 
-No dejes de explorar la documentación oficial de cada herramienta:
+Los usuarios necesitan que esta red social sea un espacio seguro y donde pueda platicar en confianza, por lo que esperan que al momento de registrarse se utilice un lenguaje claro y sencillo que les permita seguir cada uno de los pasos.
 
-### React
+Una vez registrados necesitan que la aplicación tenga información visual que los guie al momento de publicar algún comentario y en donde ellos pueda ver los comentarios de los otros usuarios. Ya que esta red social permite la interacción con personas que no conoce, para los usuarios es importante tener una imagen de su rostro para poder identificarlos. Los Sordos son personas muy visuales así que fácilmente identifica el significado de los iconos.
 
-* [React - docs oficiales](https://reactjs.org/)
-* [React - tutorial](https://egghead.io/courses/the-beginner-s-guide-to-react)
-* [Redux - tutorial](https://egghead.io/courses/getting-started-with-redux)
-* [create-react-app](https://github.com/facebook/create-react-app)
-* [React js en español - tutorial básico, primeros pasos y ejemplos - frontendlabs.io](https://frontendlabs.io/3158--react-js-espanol-tutorial-basico-primeros-pasos-ejemplos)
+Les gustaría que  al momento de escribir un mensaje ellos tuviera la oportunidad de editarlo por si al momento de escribir la redacción no sea la correcta. También quisieran eliminarlos si por algúna razón se equivocaran.
 
-### Angular
+Es importante que algún mensaje importante se destaque por el número de "me gusta" que tiene. Y así poder identificar fácilmente las conversaciones más destacadas.
 
-* [Angular - docs oficiales](https://angular.io/)
-* [Angular CLI](https://cli.angular.io/)
-* [Angular - tutorial](https://www.youtube.com/watch?v=0eWrpsCLMJQ&list=PLC3y8-rFHvwhBRAgFinJR8KHIrCdTkZcZ)
-* [Angular - crud](https://www.youtube.com/watch?v=6wVolJfXn1c)
-* [Angular - redux](https://www.youtube.com/playlist?list=PLCKuOXG0bPi3FtoplJe0JOpiV6OyK30wd)
+Esperan tener un espacio solo para ellos donde puedan escribir una pequeña semblanza de quienes son y compartirlo con las personas que deseen.
 
-### Vue
+## Sketching
+![Sketch mobile](src/images/giphymobile.gif)
 
-* [Vue - docs oficiales](https://vuejs.org/)
-* [Vue CLI](https://cli.vuejs.org/)
-* [Vue- adicional](https://scotch.io/search?q=vue)
-* [Vue- school](https://vueschool.io/)
+![Sketch desktop](src/images/giphydeskop.gif)
 
-Independientemente de si eliges React, Vue o Angular, todos estas herramientes
-se usan muchas veces en conjunción con Redux como manejador de _estado_.
+(https://www.figma.com/proto/CoK9juRtOR2sIJ3wfHdg6rq9/Untitled?node-id=1%3A3&scaling=min-zoom)
 
-* [Redux - docs oficiales](https://redux.js.org/)
+(https://www.figma.com/proto/E1pzxVODlUVx95hI9PyHxIsb/Untitled?node-id=2%3A2&scaling=min-zoom)
 
-## Checklist
+## Elementos Visuales
 
-### General
+### Color
+La elección del color azul claro, que predomina en Deafriend es muy conveniente para los diseños web y redes sociales ya que representa la calma y amistad. También se asocia a las personas tímidas o introvertidas.
+Considerando nuestro público y que al ser una red "nueva" que en primer instancia debe captar a los usuarios y trasmitirles seguridad para que la ocupen.
 
-* [ ] Producto final sigue los lineamientos del diseño.
+### Contraste
+Se emplearon colores complementarios que ayudan al contraste en el logotipo. En la página principal(muro). Se le da más valor a los blancos para que se destaquen los mensajes. Se contrastan ciertos elementos con el color naranja para llamar la atención de los usuarios y se resalta el tamaño de la letra del mensaje para que este sea más visible que el nombre.
 
-### `README.md`
+### Jerarquía
+En cuanto a la importancia de los elementos se destaca el escribir un mensaje el cual tiene un call to action. Así como el texto de los mensajes.
 
-* [ ] Información sobre instalación y despliegue de tu aplicación.
+## Testeo con Usuarios
+Se realizarón las pruebas con usuarios finales, es decir 3 estudiantes Sordos de Educación Media Superior. Se les compartió la liga del proyecto. No se les dieron instrucciones. Ellos entraron a la aplicación todos se conectaron a través de una red social. Comenzaron a explorar los distintos mensajes que habían y entre ellos se mandaron mensajes. Descubrieron que existia un submenú que los llevaba a ver su perfil y que podían regresar a la pantalla principal.
+Al terminar la prueba se les pregunto que si había sido fácil la forma de navegar.
+Ellos comentaron que había sido muy fácil y que les llamaba la atención del logo al combinar dos palabras del inglés.
+Se les pregunto sobre los iconos y entendian para que servia cada uno y prefieren que en lugar de que diga favorito, sea un me gusta!
+Uno de los usuarios creo un acceso directo desde su celular.
+Al final se les explico que esta en proceso de producción.
 
-### Pruebas / tests
+# Deafriend for Education 
 
-* [ ] Tests unitarios cubren un mínimo del 70% de statements, functions, lines,
-  y branches.
-* [ ] Pasa tests (y linters) (`npm test`).
+Es una red social que busca ser un espacio donde personas jóvenes Sordas se comunican entre si y comparten sus diferentes experiencias en el ámbito educativo.
 
-### Creación de cuenta (sign up)
+1. Ingresa tus datos para registrarte o bien utiliza alguna de tus redes sociales.
+2. Se parte de la comunidad Sorda online.
 
-* [ ] Permite crear cuenta.
-* [ ] Valida email.
-* [ ] Valida password.
-* [ ] Muestra mensajes de error.
-
-### Inicio de sesión (sign in)
-
-* [ ] Permite iniciar sesión.
-* [ ] Valida email.
-* [ ] Valida password.
-* [ ] Muestra mensajes de error.
-
-### Muro (wall/feed)
-
-* [ ] Muestra _muro_.
-* [ ] Permite publicar nuevos posts.
-* [ ] Permite eliminar posts.
-* [ ] Pide confirmación antes de borrar posts.
-* [ ] Permite editar posts (in place).
-* [ ] Permite filtrar posts por público/amigos.
-* [ ] Permite marcar posts como _gustados_ (like).
+Instrucciones para desarrolladorxs:
+1. Realiza un fork de este repositorio.
+2.️ Clona tu fork a tu computadora.
+3. Instala las dependencias del proyecto con el comando npm install. 
+Si deseas aportar al proyecto escríbenos un issue o haz un pull request. 

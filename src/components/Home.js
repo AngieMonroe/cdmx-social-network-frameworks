@@ -3,12 +3,7 @@ import NavbarApp from './Navbar';
 import NewPost from './NewPost';
 import PostList from './PostList';
 import './Home.css'
-// import PropTypes from 'prop-types';
-// Wes Bos videos youtube para aprender más.... Shirley Wu  funfun Function 
-// <Router path = "home/:id" />
-//Babel js help
-//zeit para hacer deploye
-//En lugar de utilizar propstype utilizar flow 
+
 
 class Home extends Component {
 

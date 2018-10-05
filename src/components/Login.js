@@ -25,7 +25,7 @@ class Login extends Component {
         .then(() => {
         })
         .catch((error) => {
-            console.log('Error al ingresar');
+            alert('Escribe correo y contraseña validos');
         });
     }
 
@@ -38,7 +38,7 @@ class Login extends Component {
             })
         })
         .catch(() => {
-            console.log('Error al registrarse')
+            alert('Ingresa información valida en los campos')
         })
     }
 
