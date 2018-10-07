@@ -13,7 +13,7 @@ class Home extends Component {
             <div className="firstImage">
             <NavbarApp user={this.props.user}/>
             <NewPost user={this.props.user}/>
-            <PostList />
+            <PostList user={this.props.user} />
             </div>
         );
     }

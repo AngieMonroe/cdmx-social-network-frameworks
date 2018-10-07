@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Card, CardHeader, CardBody} from 'reactstrap';
 import firebaseConf from '../config/firebaseConf';
 import Likes from './Likes';
+import imageUser from '../images/usuario.jpg';
+
 
 // Componente que nos permitirá traer la información de firebase
 class PostList extends Component {
@@ -15,6 +17,7 @@ class PostList extends Component {
          this.state = {
             posts : [],
             postEdit : '',
+            replyPost : ''
          };
      }
 
@@ -23,7 +26,7 @@ class PostList extends Component {
     }
 
      componentDidMount(){
-         this.database.orderByChild('keyPost').on('value', snapshot => {             
+         this.database.on('value', snapshot => {             
             const posts = [];
             snapshot.forEach(element => {
                 const dataPost = element.val()
@@ -47,6 +50,25 @@ class PostList extends Component {
          })
      }
 
+     replyPost(keyPost){
+        let photoUser;
+        if(this.props.user.photoURL === null){
+            photoUser = imageUser;
+        }else {
+            photoUser = this.props.user.photoURL;
+        }
+      this.database.child(keyPost).push();
+      const postNew = this.database.child(keyPost).push();
+      const keyPostReply = postNew.getKey();
+      this.database.child(`${keyPost}/${keyPostReply}`).set({
+          name: this.props.user.displayName,
+          photo: photoUser,
+          textPost: this.state.replyPost,
+          keyPost: keyPostReply,
+          });
+      // alert('Se guardo el mensaje');
+      }
+
     render() {
 
         return (
@@ -55,6 +77,7 @@ class PostList extends Component {
             // se aplica un .reverse() que nos ayuda a cambiar el orden de las publicaciones.
             <section className="container-fluid">
             {this.state.posts.map(post => 
+            this.props.user.displayName === post.name ? (
                 <Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
                     <CardHeader>
                     <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
@@ -63,7 +86,10 @@ class PostList extends Component {
                         <p name="textPost" className="col-12">{post.textPost} </p>
                         <li className="list-inline-item"><a href="#" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
                         <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
+                        <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
                         <Likes />
+
+                        {/* Modal editar post */}
                         <div className="modal fade" id={post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
@@ -77,13 +103,65 @@ class PostList extends Component {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" className="btn btn-primary" onClick={() => this.editPost(post.keyPost)}>Guardar cambios</button>
+                                <button type="button" className="btn btn-primary" onClick={() => this.editPost(post.keyPost)} data-dismiss="modal">Guardar cambios</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        {/* Modal responder post */}
+                        <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Responder comentario</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                            <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-primary" onClick={() => this.replyPost(post.keyPost)} data-dismiss="modal">Responder</button>
                             </div>
                             </div>
                         </div>
                         </div>
               </CardBody>
-                </Card>
+                </Card>) :
+                (<Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
+                <CardHeader>
+                <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
+                </CardHeader>
+                <CardBody>
+                    <p name="textPost" className="col-12">{post.textPost} </p>
+                    <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
+                    <Likes />
+
+                    {/* Modal responder post */}
+                    <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal-dialog" role="document">
+                            <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Responder comentario</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                            <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" className="btn btn-primary" onClick={() => this.replyPost(post.keyPost)} data-dismiss="modal">Responder</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+          </CardBody>
+            </Card>)
                 ).reverse()}
             </section>
         )
