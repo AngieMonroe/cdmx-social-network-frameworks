@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 // import PropTypes from 'prop-types';
 
+// El Componente App será el principal (componente padre)
 class App extends Component {
   constructor (props) {
     super(props);
@@ -13,10 +14,12 @@ class App extends Component {
     }
   }
 
+  // Al momento de cargarse la pagina se llamará al metodo de firebase que nos permite identificar si un
+  // usuario esta logeado.
   componentDidMount () {
     this.authListener();
   }
-
+  //Con la información que se recibe del observador de firebase se actualiza el estado del componente
   authListener(){
     firebaseConf.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -26,6 +29,8 @@ class App extends Component {
       }
     });
   }
+
+  // Por medio de un operador ternario se muestran los componentes Home o Login según sea el caso
   render() {
     return (
       <div className="App ">

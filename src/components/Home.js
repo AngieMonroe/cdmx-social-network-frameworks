@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import NavbarApp from './Navbar';
+import NavbarApp from './NavbarApp';
 import NewPost from './NewPost';
 import PostList from './PostList';
 import './Home.css'
 
-
+//El componente Home será padre de los componentes Navbar, NewPost y PostList. Utilizando las props
+// se envia el estado del componente App para poder ser utilizado en los otros componentes(hijos).
 class Home extends Component {
 
     render() {

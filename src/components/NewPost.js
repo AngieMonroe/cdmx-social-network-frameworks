@@ -3,6 +3,7 @@ import { Card, Button, CardHeader, CardBody } from 'reactstrap';
 import firebase from 'firebase';
 import imageUser from '../images/usuario.jpg';
 
+//Componente que permitirá escribir nuevos post y guardarlos en firebase
 class NewPost extends Component {
     constructor(props){
         super(props);
@@ -35,6 +36,8 @@ class NewPost extends Component {
               }else{
                   photoUser = this.props.user.photoURL;
               }
+            // Al guardar la información en firebase  se envia las props, asi como el estado
+            // resultado del nuevo mensaje escrito.
             firebase.database().ref('postReact').push();
             const postNew = firebase.database().ref('postReact').push();
             const keyPost = postNew.getKey();

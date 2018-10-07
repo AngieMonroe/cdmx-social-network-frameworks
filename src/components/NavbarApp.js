@@ -10,10 +10,10 @@ import {
     NavItem,
     NavLink,
     Button } from 'reactstrap';
-import './Navbar.css';
+import './NavbarApp.css';
 import PropTypes from 'prop-types';
 import './ProfileUser';
-  
+
 class NavbarApp extends Component {
     constructor(props) {
       super(props);
@@ -29,6 +29,7 @@ class NavbarApp extends Component {
       });  
     }
 
+    //Función de firebase para cerrar sesión, ahora es un método del componente NavbarApp
     logout(){
       firebaseConf.auth().signOut()
       .then(function() {
@@ -41,6 +42,8 @@ class NavbarApp extends Component {
 
 
     render() {
+      //Con la información del estado de App que se ha pasado por medio de las props se puede consultar el 
+      //nombre del usuario logueado
       const userName = this.props.user.displayName;
       return (
         <div>

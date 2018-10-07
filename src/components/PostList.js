@@ -3,6 +3,7 @@ import {Card, CardHeader, CardBody} from 'reactstrap';
 import firebaseConf from '../config/firebaseConf';
 import Likes from './Likes';
 
+// Componente que nos permitirá traer la información de firebase
 class PostList extends Component {
      constructor(props){
          super(props);
@@ -31,7 +32,9 @@ class PostList extends Component {
             this.setState({ posts });
          })
      }
-
+     // Al momento de eliminar o editar alguna publicación es importante identificar cual es, para ello
+     // ocupamos la key que guardamos en el post y nos servirá como parametro de nuestra función de borrar
+     // o editar, según corresponda.
      deletePost(keyPost) {
         if(window.confirm('¿Quieres eliminar el post?')){
             this.database.child(keyPost).remove();
@@ -47,6 +50,9 @@ class PostList extends Component {
     render() {
 
         return (
+            // Al momento de hacer el render de la información se aplica el método map para crear un nuevo arreglo
+            // de acuerdo a la información que necesitamos mostrar. Para identificar los mensajes recientes al .map
+            // se aplica un .reverse() que nos ayuda a cambiar el orden de las publicaciones.
             <section className="container-fluid">
             {this.state.posts.map(post => 
                 <Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>

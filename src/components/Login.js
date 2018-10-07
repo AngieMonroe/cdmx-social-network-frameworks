@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import firebaseConf from '../config/firebaseConf';
 import logo from './logodeafriend2.png';
-import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Input, Button } from 'reactstrap';
 import './Login.css';
 
+// En este componente se agrupan los distintos métodos para inciar sesión 
 class Login extends Component {
     constructor (props){
         console.log(props)
@@ -29,6 +30,7 @@ class Login extends Component {
         });
     }
 
+    // Se guarda nombre del registro de usuario en el perfile de firebase para ser utilizado más adelante
     signup(e){
         e.preventDefault();
         firebaseConf.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -73,15 +75,12 @@ class Login extends Component {
               <div>
               <Form>
               <FormGroup>
-                   <Label for="exampleEmail">Nombre</Label>
                     <Input placeholder="Escribe tu nombre" value={this.state.name} onChange={this.handleChange} type="text" name="name" />
                 </FormGroup>
                 <FormGroup>
-                   <Label for="exampleEmail">Email</Label>
                     <Input placeholder="Escribe tu email" value={this.state.email} onChange={this.handleChange} type="email" name="email" />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="examplePassword">Password</Label>
                     <Input placeholder="Escribe tu contraseña" value={this.state.password} onChange={this.handleChange} type="password" name="password" />
                 </FormGroup>
                 <Button className="col align-self-start mb-2 btn btn-info" size="md" onClick={this.login} >Entrar</Button>
