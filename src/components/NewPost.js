@@ -2,29 +2,39 @@ import React, { Component } from 'react';
 import { Card, Button, CardHeader, CardBody } from 'reactstrap';
 import firebase from 'firebase';
 import imageUser from '../images/usuario.jpg';
+import firebaseConf from '../config/firebaseConf';
 
 //Componente que permitirá escribir nuevos post y guardarlos en firebase
 class NewPost extends Component {
     constructor(props){
         super(props);
         this.savePost = this.savePost.bind(this);
+        this.saveImage = this.saveImage.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        // this.handleChangeImage = this.handleChangeImage(this);
         this.state = {
             textPost: '',
-            imagePost: ''
+            image: '',
+            url:''
         }
     }
 
     handleChange(e){
-        this.setState({ textPost: e.target.value});
+        this.setState({ [e.target.name]: e.target.value});
     }
 
-    // handleChangeImage(e){
-    //     this.setState({ imagePost: e.target.files[0]});
-    //     console.log(e.target.files[0])
-    // }
-
+    saveImage(){
+        console.log(this.state.url.name)
+        const databaseImage = firebaseConf.storage().ref(`images/${this.state.url.name}`);
+        const newImage = databaseImage.put(this.state.url);
+        newImage.on('state_changed', snapshot => {console.log('Uploaded a blob or file!')},
+        error => { console.log('error'); },
+        () => {
+        firebaseConf.storage().ref('images').child(this.state.url.name).getDownloadURL().then(image => {
+            console.log(image)
+            this.setState({ image });
+        })
+    })
+    }
 
     savePost () {
         if (this.state.textPost.length === 0 || /^\s+$/.test()) {
@@ -46,7 +56,8 @@ class NewPost extends Component {
                 photo: photoUser,
                 textPost: this.state.textPost,
                 keyPost: keyPost,
-                likes: 0
+                likes: 0,
+                image: this.state.image
                 });
             // alert('Se guardo el mensaje');
             this.setState({textPost: ''})    
@@ -61,7 +72,8 @@ class NewPost extends Component {
                 <CardHeader><strong>{userName}</strong> Escribe tu comentario:</CardHeader>
                 <CardBody>
                     <textarea name="textPost" className="col-12" value={this.state.textPost} onChange={this.handleChange}></textarea>
-                    {/* <input type="file" value={this.state.imagePost} onChange={this.handleChangeImage}/> */}
+                    <input type="file" name="image" onChange={event => this.setState ({url: event.target.files[0]})}/>
+                    <button onClick={this.saveImage}>Adjuntar</button>
                     <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>

@@ -32,7 +32,7 @@ class PostList extends Component {
                 const dataPost = element.val()
                 posts.push(dataPost);
             })
-            this.setState({ posts });
+            this.setState({ posts : posts });
          })
      }
      // Al momento de eliminar o editar alguna publicación es importante identificar cual es, para ello
@@ -57,10 +57,10 @@ class PostList extends Component {
         }else {
             photoUser = this.props.user.photoURL;
         }
-      this.database.child(keyPost).push();
-      const postNew = this.database.child(keyPost).push();
+      this.database.child(keyPost/'reply').push();
+      const postNew = this.database.child(keyPost/'reply').push();
       const keyPostReply = postNew.getKey();
-      this.database.child(`${keyPost}/${keyPostReply}`).set({
+      this.database.child(`${keyPost}/reply/${keyPostReply}`).set({
           name: this.props.user.displayName,
           photo: photoUser,
           textPost: this.state.replyPost,
@@ -83,11 +83,14 @@ class PostList extends Component {
                     <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
                     </CardHeader>
                     <CardBody>
+                    <img className="card-img-top" src={post.image} />
                         <p name="textPost" className="col-12">{post.textPost} </p>
                         <li className="list-inline-item"><a href="#" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
                         <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
                         <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
                         <Likes />
+                        
+                        {console.log(post.reply)}
 
                         {/* Modal editar post */}
                         <div className="modal fade" id={post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,9 +139,11 @@ class PostList extends Component {
                 <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
                 </CardHeader>
                 <CardBody>
+                <img className="card-img-top" src={post.image} />
                     <p name="textPost" className="col-12">{post.textPost} </p>
                     <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
                     <Likes />
+                    {console.log(post.reply)}
 
                     {/* Modal responder post */}
                     <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
