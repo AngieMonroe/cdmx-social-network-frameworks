@@ -92,9 +92,9 @@ class Login extends Component {
                 <Row className="row justify-content-md-center mt-3">
                     <Col sm={1} md={3} >
                     <Button className="btn-google btn-social btn-block" onClick={this.loginGoogle}> 
-                    <i class="fab fa-google"></i> Ingresa con Google</Button>{' '}
+                    <i className="fab fa-google"></i> Ingresa con Google</Button>{' '}
                     <Button className="btn-facebook btn-social btn-block" onClick={this.loginFacebook}>
-                    <i class="fab fa-facebook"></i> Ingresa con Facebook</Button>{' '}
+                    <i className="fab fa-facebook"></i> Ingresa con Facebook</Button>{' '}
                     </Col>
                 </Row>
             </section>   

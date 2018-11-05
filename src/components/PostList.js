@@ -71,14 +71,13 @@ class PostList extends Component {
         let infoReply;
         let infoPost = this.state.posts.map(post => {
             if(post.reply){
-                for(let key in post.reply){
-                    console.log(key)
-                    infoReply =  <ListGroupItem><img src={post.reply[key].photo} width="20px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img>
-                    <span className="text-secondary">{post.reply[key].name} dice: {post.reply[key].textPost}</span></ListGroupItem>
+                const reply = Object.getOwnPropertyNames(post.reply)
+                infoReply = reply.map(element => {
+                    return <ListGroupItem key={post.reply[element].keyPost}><img src={post.reply[element].photo} width="20px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img>
+                           <span className="text-secondary">{post.reply[element].name} dice: {post.reply[element].textPost}</span></ListGroupItem>
+                })} else {
+                    infoReply = <span> </span>
                 }
-            } else {
-                infoReply = <span></span>
-            }
             return (
                 this.props.user.displayName === post.name ? (
                             <Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
@@ -90,7 +89,7 @@ class PostList extends Component {
                                     <p name="textPost" className="col-12">{post.textPost} </p>
                                     <li className="list-inline-item"><a href="/" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
                                     <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
-                                    <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
+                                    <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i className="fas fa-reply"></i> </a> </li>
                                     <Likes />
                                     <ListGroup>
                                     {infoReply}
@@ -106,7 +105,7 @@ class PostList extends Component {
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <div className="modal-body"> <textarea contenteditable="true" className="col-12" name="postEdit" value={this.state.postEdit} onChange={this.handleChange}> {post.textPost} </textarea>
+                                        <div className="modal-body"> <textarea  className="col-12" name="postEdit" value={this.state.postEdit} onChange={this.handleChange}> {post.textPost} </textarea>
                                         </div>
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -127,7 +126,7 @@ class PostList extends Component {
                                             </button>
                                         </div>
                                         <div className="modal-body">
-                                        <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
+                                        <textarea  className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
                                         </div>
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -145,7 +144,7 @@ class PostList extends Component {
                             <CardBody>
                             <img className="card-img-top" width="20vh"src={post.image} />
                                 <p name="textPost" className="col-12">{post.textPost} </p>
-                                <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
+                                <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i className="fas fa-reply"></i> </a> </li>
                                 <Likes />
                                 <ListGroup>
                                     {infoReply}
@@ -162,7 +161,7 @@ class PostList extends Component {
                                             </button>
                                         </div>
                                         <div className="modal-body">
-                                        <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
+                                        <textarea className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
                                         </div>
                                         <div className="modal-footer">
                                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>

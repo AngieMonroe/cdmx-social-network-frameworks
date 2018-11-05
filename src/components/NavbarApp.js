@@ -47,9 +47,9 @@ class NavbarApp extends Component {
       const userName = this.props.user.displayName;
       return (
         <div>
-          <Navbar color="secondary" light expand="md" fixed="top" scrolling >
-            <NavbarBrand href="/"> <a className="navbar-brand d-inline-block align-top">
-            <img src={logo} width="130" height="50" alt="logo deafriend"></img></a>
+          <Navbar color="secondary" light expand="md" fixed="top">
+            <NavbarBrand href="/"className="navbar-brand d-inline-block align-top">
+            <img src={logo} width="130" height="50" alt="logo deafriend"></img>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
