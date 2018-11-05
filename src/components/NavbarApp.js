@@ -47,7 +47,7 @@ class NavbarApp extends Component {
       const userName = this.props.user.displayName;
       return (
         <div>
-          <Navbar color="secondary" light expand="md">
+          <Navbar color="secondary" light expand="md" fixed="top" scrolling >
             <NavbarBrand href="/"> <a className="navbar-brand d-inline-block align-top">
             <img src={logo} width="130" height="50" alt="logo deafriend"></img></a>
             </NavbarBrand>

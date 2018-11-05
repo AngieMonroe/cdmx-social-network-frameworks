@@ -72,8 +72,14 @@ class NewPost extends Component {
                 <CardHeader><strong>{userName}</strong> Escribe tu comentario:</CardHeader>
                 <CardBody>
                     <textarea name="textPost" className="col-12" value={this.state.textPost} onChange={this.handleChange}></textarea>
-                    <input type="file" name="image" onChange={event => this.setState ({url: event.target.files[0]})}/>
-                    <button onClick={this.saveImage}>Adjuntar</button>
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="image" onChange={event => this.setState ({url: event.target.files[0]})}/>
+                        <label class="custom-file-label" for="inputGroupFile01">Selecciona una imagen</label>
+                    </div>
+                    </div>
+                    {/* <input type="file" name="image" onChange={event => this.setState ({url: event.target.files[0]})}/> */}
+                    <Button className="ml-auto mr-2" color="purple" onClick={this.saveImage}>Adjuntar</Button>
                     <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>

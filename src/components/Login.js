@@ -8,7 +8,6 @@ import './Login.css';
 // En este componente se agrupan los distintos métodos para inciar sesión 
 class Login extends Component {
     constructor (props){
-        console.log(props)
         super(props)
         this.login = this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -63,6 +62,7 @@ class Login extends Component {
     }
 
     handleChange(e){
+        console.log(e)
         this.setState({ [e.target.name]: e.target.value});
     }
     

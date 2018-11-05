@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardHeader, CardBody} from 'reactstrap';
+import {Card, CardHeader, CardBody, ListGroup, ListGroupItem} from 'reactstrap';
 import firebaseConf from '../config/firebaseConf';
 import Likes from './Likes';
 import imageUser from '../images/usuario.jpg';
@@ -57,117 +57,133 @@ class PostList extends Component {
         }else {
             photoUser = this.props.user.photoURL;
         }
-      this.database.child(keyPost/'reply').push();
-      const postNew = this.database.child(keyPost/'reply').push();
-      const keyPostReply = postNew.getKey();
-      this.database.child(`${keyPost}/reply/${keyPostReply}`).set({
-          name: this.props.user.displayName,
-          photo: photoUser,
-          textPost: this.state.replyPost,
-          keyPost: keyPostReply,
-          });
-      // alert('Se guardo el mensaje');
+        const postNew = firebaseConf.database().ref(`postReact/${keyPost}/reply`).push();
+        const keyPostReply = postNew.getKey();
+        firebaseConf.database().ref(`postReact/${keyPost}/reply/${keyPostReply}`).set({
+            name: this.props.user.displayName,
+            photo: photoUser,
+            textPost: this.state.replyPost,
+            keyPost: keyPostReply,
+            });
       }
 
     render() {
+        let infoReply;
+        let infoPost = this.state.posts.map(post => {
+            if(post.reply){
+                for(let key in post.reply){
+                    console.log(key)
+                    infoReply =  <ListGroupItem><img src={post.reply[key].photo} width="20px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img>
+                    <span className="text-secondary">{post.reply[key].name} dice: {post.reply[key].textPost}</span></ListGroupItem>
+                }
+            } else {
+                infoReply = <span></span>
+            }
+            return (
+                this.props.user.displayName === post.name ? (
+                            <Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
+                                <CardHeader>
+                                <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
+                                </CardHeader>
+                                <CardBody>
+                                <img className="card-img-top" width="20vh"src={post.image} />
+                                    <p name="textPost" className="col-12">{post.textPost} </p>
+                                    <li className="list-inline-item"><a href="/" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
+                                    <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
+                                    <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
+                                    <Likes />
+                                    <ListGroup>
+                                    {infoReply}
+                                    </ListGroup>
+                                    
+                                    {/* Modal editar post */}
+                                    <div className="modal fade" id={post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Edita tu mensaje</h5>
+                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div className="modal-body"> <textarea contenteditable="true" className="col-12" name="postEdit" value={this.state.postEdit} onChange={this.handleChange}> {post.textPost} </textarea>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" className="btn btn-primary" onClick={() => this.editPost(post.keyPost)} data-dismiss="modal">Guardar cambios</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+            
+                                    {/* Modal responder post */}
+                                    <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Responder comentario</h5>
+                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div className="modal-body">
+                                        <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" className="btn btn-primary" onClick={() => this.replyPost(post.keyPost)} data-dismiss="modal">Responder</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                          </CardBody>
+                            </Card>) :
+                            (<Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
+                            <CardHeader>
+                            <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
+                            </CardHeader>
+                            <CardBody>
+                            <img className="card-img-top" width="20vh"src={post.image} />
+                                <p name="textPost" className="col-12">{post.textPost} </p>
+                                <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
+                                <Likes />
+                                <ListGroup>
+                                    {infoReply}
+                                </ListGroup>
+            
+                                {/* Modal responder post */}
+                                <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog" role="document">
+                                        <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h5 className="modal-title" id="exampleModalLabel">Responder comentario</h5>
+                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div className="modal-body">
+                                        <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
+                                        </div>
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" className="btn btn-primary" onClick={() => this.replyPost(post.keyPost)} data-dismiss="modal">Responder</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                      </CardBody>
+                        </Card>)
+                
+            )
+        }).reverse()
+        
 
         return (
             // Al momento de hacer el render de la información se aplica el método map para crear un nuevo arreglo
             // de acuerdo a la información que necesitamos mostrar. Para identificar los mensajes recientes al .map
             // se aplica un .reverse() que nos ayuda a cambiar el orden de las publicaciones.
             <section className="container-fluid">
-            {this.state.posts.map(post => 
-            this.props.user.displayName === post.name ? (
-                <Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
-                    <CardHeader>
-                    <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
-                    </CardHeader>
-                    <CardBody>
-                    <img className="card-img-top" src={post.image} />
-                        <p name="textPost" className="col-12">{post.textPost} </p>
-                        <li className="list-inline-item"><a href="#" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
-                        <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
-                        <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
-                        <Likes />
-                        
-                        {console.log(post.reply)}
-
-                        {/* Modal editar post */}
-                        <div className="modal fade" id={post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Edita tu mensaje</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body"> <textarea contenteditable="true" className="col-12" name="postEdit" value={this.state.postEdit} onChange={this.handleChange}> {post.textPost} </textarea>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" className="btn btn-primary" onClick={() => this.editPost(post.keyPost)} data-dismiss="modal">Guardar cambios</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-
-                        {/* Modal responder post */}
-                        <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Responder comentario</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                            <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" className="btn btn-primary" onClick={() => this.replyPost(post.keyPost)} data-dismiss="modal">Responder</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-              </CardBody>
-                </Card>) :
-                (<Card className="mt-3 col-sm-12 col-md-9" key={post.keyPost}>
-                <CardHeader>
-                <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
-                </CardHeader>
-                <CardBody>
-                <img className="card-img-top" src={post.image} />
-                    <p name="textPost" className="col-12">{post.textPost} </p>
-                    <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i class="fas fa-reply"></i> </a> </li>
-                    <Likes />
-                    {console.log(post.reply)}
-
-                    {/* Modal responder post */}
-                    <div className="modal fade" id={"reply" + post.keyPost} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog" role="document">
-                            <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Responder comentario</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                            <textarea contenteditable="true" className="col-12" name="replyPost" value={this.state.replyPost} onChange={this.handleChange}> {post.textPost} </textarea>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" className="btn btn-primary" onClick={() => this.replyPost(post.keyPost)} data-dismiss="modal">Responder</button>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-          </CardBody>
-            </Card>)
-                ).reverse()}
+            {infoPost}
             </section>
         )
     }
