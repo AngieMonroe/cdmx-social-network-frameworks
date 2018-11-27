@@ -12,8 +12,6 @@ import {
     Button } from 'reactstrap';
 import './NavbarApp.css';
 import PropTypes from 'prop-types';
-import './ProfileUser';
-import { Link } from "react-router-dom";
 
 
 class NavbarApp extends Component {

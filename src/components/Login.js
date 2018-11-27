@@ -70,7 +70,7 @@ class Login extends Component {
         return (
             <section className="container-fluid">
                 <Row className="show-grid row justify-content-center">
-                <Col sm={1} md={8} >
+                <Col sm={1} md={8} lg={4}>
                     <div className="text-center">
                     <img src={logo} className="logo img-fluid" alt="logo deafriend" />
                     </div>
@@ -91,7 +91,7 @@ class Login extends Component {
                 </Col>
                 </Row>
                 <Row className="row justify-content-md-center mt-3">
-                    <Col sm={1} md={8} >
+                    <Col sm={1} md={8} lg={4}>
                     <Button className="btn-google btn-social btn-block" onClick={this.loginGoogle}> 
                     <i className="fab fa-google"></i> Ingresa con Google</Button>{' '}
                     <Button className="btn-facebook btn-social btn-block" onClick={this.loginFacebook}>
