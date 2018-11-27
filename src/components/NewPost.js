@@ -3,6 +3,8 @@ import { Card, Button, CardHeader, CardBody } from 'reactstrap';
 import firebase from 'firebase';
 import imageUser from '../images/usuario.jpg';
 import firebaseConf from '../config/firebaseConf';
+import './NewPost.css';
+
 
 //Componente que permitirá escribir nuevos post y guardarlos en firebase
 class NewPost extends Component {
@@ -79,8 +81,8 @@ class NewPost extends Component {
                     </div>
                     </div>
                     {/* <input type="file" name="image" onChange={event => this.setState ({url: event.target.files[0]})}/> */}
-                    <Button className="ml-auto mr-2" color="purple" onClick={this.saveImage}>Adjuntar</Button>
-                    <Button className="ml-auto" color="info" onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
+                    <Button className="ml-auto mr-2 colorBtn2" onClick={this.saveImage}>Adjuntar</Button>
+                    <Button className="ml-auto colorBtn"  onClick={this.savePost}>Publicar <i className="fas fa-arrow-circle-right"></i></Button>
                 </CardBody>
                 </Card>
             </section>     

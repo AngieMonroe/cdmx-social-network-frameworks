@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Card, CardHeader, CardBody, ListGroup, ListGroupItem} from 'reactstrap';
 import firebaseConf from '../config/firebaseConf';
-import Likes from './Likes';
 import imageUser from '../images/usuario.jpg';
+import Likes from './Likes';
+
 
 
 // Componente que nos permitirá traer la información de firebase
@@ -13,11 +14,10 @@ class PostList extends Component {
          this.handleChange = this.handleChange.bind(this);
          this.deletePost = this.deletePost.bind(this);
          this.editPost = this.editPost.bind(this);  
-        //  this.like = this.like.bind(this);
          this.state = {
             posts : [],
             postEdit : '',
-            replyPost : ''
+            replyPost : '',
          };
      }
 
@@ -85,12 +85,13 @@ class PostList extends Component {
                                 <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
                                 </CardHeader>
                                 <CardBody>
-                                <img className="card-img-top" width="20vh"src={post.image} />
+                                <img className="card-img-top m-2" src={post.image} />
                                     <p name="textPost" className="col-12">{post.textPost} </p>
                                     <li className="list-inline-item"><a href="/" className="white-text ml-2" onClick={() => this.deletePost(post.keyPost)}><i className="far fa-trash-alt fa-xs icon"></i> Borrar</a></li>
                                     <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="postEdit" data-toggle="modal" data-target={"#" + post.keyPost}><i className="far fa-edit fa-xs icon"> </i> Editar</a></li>
                                     <li className="list-inline-item"><a href="/" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i className="fas fa-reply"></i> </a> </li>
-                                    <Likes />
+                                    
+                                    <Likes likes={post.likes} keyPost={post.keyPost} />
                                     <ListGroup>
                                     {infoReply}
                                     </ListGroup>
@@ -142,10 +143,11 @@ class PostList extends Component {
                             <img src={post.photo} width="30px" className="img-fluid z-depth-1 rounded-circle mr-3" alt="Imagen usuario"></img> {post.name} dice:
                             </CardHeader>
                             <CardBody>
-                            <img className="card-img-top" width="20vh"src={post.image} />
+                            <img className="card-img-top m-2" src={post.image} />
                                 <p name="textPost" className="col-12">{post.textPost} </p>
                                 <li className="list-inline-item"><a href="#" className="white-text ml-2 mr-2" name="replyPost" data-toggle="modal" data-target={"#" + "reply" + post.keyPost}> <i className="fas fa-reply"></i> </a> </li>
-                                <Likes />
+                                
+                                <Likes likes={post.likes} keyPost={post.keyPost} />
                                 <ListGroup>
                                     {infoReply}
                                 </ListGroup>

@@ -1,7 +1,25 @@
 .firstImage{
-    background-image: url('../images/señas.png');
+    background-image: url('../images/foco.png');
     background-size: 55vh;
     background-attachment: fixed;
-    background-position: 99% 30%;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
+}
+
+@media(min-width: 600px){
+    .firstImage{
+        background-position: 170% 50%;
+    }
+}
+
+@media(min-width: 769px){
+    .firstImage{
+        background-position: 107% 50%;
+    }
+}
+
+@media(min-width: 992px){
+    .firstImage{
+        background-position: 99% 50%;
+    }
 }

@@ -2,3 +2,12 @@
     color: white;
     margin-right: 3rem;
 }
+
+.colorNav{
+    background-color: #fdd835;
+}
+
+.colorBtnNav{
+    background-color: #304ffe;
+    border-color: #304ffe;
+}

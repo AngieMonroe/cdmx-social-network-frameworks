@@ -69,28 +69,29 @@ class Login extends Component {
     render (){
         return (
             <section className="container-fluid">
-                <Row className="show-grid row justify-content-md-center">
-                <Col sm={1} md={3}>
-                    <img src={logo} className="logo" alt="logo deafriend" />
-              <div>
-              <Form>
-              <FormGroup>
-                    <Input placeholder="Escribe tu nombre" value={this.state.name} onChange={this.handleChange} type="text" name="name" />
-                </FormGroup>
-                <FormGroup>
-                    <Input placeholder="Escribe tu email" value={this.state.email} onChange={this.handleChange} type="email" name="email" />
-                </FormGroup>
-                <FormGroup>
-                    <Input placeholder="Escribe tu contraseña" value={this.state.password} onChange={this.handleChange} type="password" name="password" />
-                </FormGroup>
-                <Button className="col align-self-start mb-2 btn btn-info" size="md" onClick={this.login} >Entrar</Button>
-                <Button className="col align-self-end btn btn-light"  size="md" onClick={this.signup} >Registrarte</Button>
-                </Form>
-              </div>
+                <Row className="show-grid row justify-content-center">
+                <Col sm={1} md={8} >
+                    <div className="text-center">
+                    <img src={logo} className="logo img-fluid" alt="logo deafriend" />
+                    </div>
+
+                    <Form>
+                    <FormGroup>
+                            <Input placeholder="Escribe tu nombre" value={this.state.name} onChange={this.handleChange} type="text" name="name" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input placeholder="Escribe tu email" value={this.state.email} onChange={this.handleChange} type="email" name="email" />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input placeholder="Escribe tu contraseña" value={this.state.password} onChange={this.handleChange} type="password" name="password" />
+                        </FormGroup>
+                        <Button className="col align-self-start mb-2 btn colorBtn2" size="md" onClick={this.login} >Entrar</Button>
+                        <Button className="col align-self-end btn btn-light"  size="md" onClick={this.signup} >Registrarte</Button>
+                        </Form>
                 </Col>
                 </Row>
                 <Row className="row justify-content-md-center mt-3">
-                    <Col sm={1} md={3} >
+                    <Col sm={1} md={8} >
                     <Button className="btn-google btn-social btn-block" onClick={this.loginGoogle}> 
                     <i className="fab fa-google"></i> Ingresa con Google</Button>{' '}
                     <Button className="btn-facebook btn-social btn-block" onClick={this.loginFacebook}>

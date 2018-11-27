@@ -13,6 +13,8 @@ import {
 import './NavbarApp.css';
 import PropTypes from 'prop-types';
 import './ProfileUser';
+import { Link } from "react-router-dom";
+
 
 class NavbarApp extends Component {
     constructor(props) {
@@ -47,8 +49,8 @@ class NavbarApp extends Component {
       const userName = this.props.user.displayName;
       return (
         <div>
-          <Navbar color="secondary" light expand="md" fixed="top">
-            <NavbarBrand href="/"className="navbar-brand d-inline-block align-top">
+          <Navbar className="colorNav" light expand="md" fixed="top">
+            <NavbarBrand href="/" className="navbar-brand d-inline-block align-top ml-4">
             <img src={logo} width="130" height="50" alt="logo deafriend"></img>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
@@ -64,7 +66,7 @@ class NavbarApp extends Component {
                   <NavLink className="text-white" href="./ProfileUser">Perfil    </NavLink>
                 </NavItem>
                 <NavItem >
-                  <Button  color="info" size="md" onClick={this.logout} >Cerrar Sesión</Button>
+                  <Button  className="colorBtnNav" size="md" onClick={this.logout} >Cerrar Sesión</Button>
                 </NavItem>
               </Nav>
             </Collapse>

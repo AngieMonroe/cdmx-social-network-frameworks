@@ -10,7 +10,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="firstImage">
+            <div className="firstImage"> 
             <NavbarApp user={this.props.user}/>
             <NewPost user={this.props.user}/>
             <PostList user={this.props.user} />
@@ -19,8 +19,5 @@ class Home extends Component {
     }
 }
 
-// Home.PropTypes = {
-//     user: PropTypes.shape.isRequired
-//   }
 
 export default Home;
