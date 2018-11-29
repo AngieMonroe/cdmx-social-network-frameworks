@@ -7,7 +7,7 @@ Es una red social que busca ser un espacio donde personas jóvenes Sordas se com
 
 ![deafriend2](https://user-images.githubusercontent.com/39387979/49189508-4538cf00-f334-11e8-9194-e607c1b3765f.png)
 
-##Red Social - Proceso UX
+# Proceso UX
 Las redes sociales son sitios donde un grupo de personas con intereses comunes se comunican e interactuan en torno a un tema.
 Una emprendedora nos ha encargado crear una red social.  Nos da ciertos temas en los que le gustaría invertir:
 
